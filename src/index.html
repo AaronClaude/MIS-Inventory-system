@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Inventory System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --sidebar-width: 250px;
+        }
+        
+        /* Loading Animation */
+        .loader-wrapper {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+        
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid #000;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: var(--sidebar-width);
+            background: #000;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar .logo {
+            color: #fff;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar .nav-link {
+            color: #fff;
+            transition: all 0.3s ease;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .sidebar .nav-link:hover {
+            background: #ffffff20;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Dashboard Stats */
+        .stat-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Animation -->
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <i class="bi bi-box-seam"></i>
+            <div>Inventory</div>
+        </div>
+        <div class="nav flex-column">
+            <a href="#" class="nav-link active"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
+            <a href="#" class="nav-link"><i class="bi bi-people me-2"></i> Students</a>
+            <a href="#" class="nav-link"><i class="bi bi-person-workspace me-2"></i> Professors</a>
+            <a href="#" class="nav-link"><i class="bi bi-box2 me-2"></i> Items</a>
+            <a href="#" class="nav-link"><i class="bi bi-arrow-left-right me-2"></i> Transactions</a>
+            <a href="#" class="nav-link"><i class="bi bi-gear me-2"></i> Settings</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container-fluid fade-in">
+            <h1 class="mb-4">Dashboard Overview</h1>
+            
+            <!-- Stats Row -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h4>Total Items</h4>
+                        <h2>150</h2>
+                        <p class="text-muted">Available in inventory</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h4>Active Borrows</h4>
+                        <h2>24</h2>
+                        <p class="text-muted">Currently borrowed</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h4>Students</h4>
+                        <h2>89</h2>
+                        <p class="text-muted">Registered borrowers</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h4>Professors</h4>
+                        <h2>12</h2>
+                        <p class="text-muted">Registered borrowers</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Recent Transactions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Borrower</th>
+                                    <th>Item</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#001</td>
+                                    <td>John Doe</td>
+                                    <td>Projector</td>
+                                    <td>2023-07-20</td>
+                                    <td><span class="badge bg-success">Returned</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#002</td>
+                                    <td>Prof. Smith</td>
+                                    <td>Laptop</td>
+                                    <td>2023-07-19</td>
+                                    <td><span class="badge bg-warning">Borrowed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Loading Animation
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.loader-wrapper');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 1000);
+        });
+
+        // Add active class to current nav item
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-link.active').classList.remove('active');
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
